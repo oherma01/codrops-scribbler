@@ -15,7 +15,7 @@ jobs:
 
     # Add files in repo to $web container, replacing existing version
     - name: Upload to blob storage
-      uses: azure/CLI@v1
+      uses: azure/CLI
       with:
         inlineScript: |
             az storage blob upload-batch --account-name othresumestg1 --auth-mode key -d '$web' -s .
