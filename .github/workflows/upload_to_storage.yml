@@ -1,22 +1,22 @@
-name: Blob storage website CI
+name: Update Static Site Content
 
 on: push
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Azure login
       uses: azure/login@v1
       with:
-          creds: ${{secrets.WHATHANDLE_AZURE_CREDENTIALS }}
+          creds: ${{secrets.WHATHANDLE_AZURE_CREDENTIALS}}
 
     # Add files in repo to $web container, replacing existing version
     - name: Upload to blob storage
       uses: azure/CLI@v1
       with:
         inlineScript: |
-            az storage blob upload-batch --account-name othresumestg1 --auth-mode key -d '$web' -s .
+            az storage blob upload-batch --account-name ${{secrets.STG_ACCOUNT_NAME}} --auth-mode key -d '$web' -s .
     - name: Purge CDN endpoint
       uses: azure/CLI@v1
       with:
