@@ -1,18 +1,15 @@
 name: Blob storage website CI
 
-on:
-    push:
-        branches: [ main ]
+on: push
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
     - name: Azure login
       uses: azure/login@v1
       with:
-          creds: ${{ secrets.WHATHANDLE_AZURE_CREDENTIALS }}
+          creds: ${{secrets.WHATHANDLE_AZURE_CREDENTIALS }}
 
     # Add files in repo to $web container, replacing existing version
     - name: Upload to blob storage
