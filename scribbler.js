@@ -1,7 +1,3 @@
-window.addEventListener('DOMContentLoaded', (event) => {
-  getVisitCount();
-});
-
 // utilities
 var get = function (selector, scope) {
   scope = scope ? scope : document;
@@ -12,24 +8,6 @@ var getAll = function (selector, scope) {
   scope = scope ? scope : document;
   return scope.querySelectorAll(selector);
 };
-
-// functions
-const functionAPI = 'https://whathandle-functionapp.azurewebsites.net/api/GetResumeCounter?code=U77qfSeG7XLSwZR6O0_5PN9M5kQ8zdio4dBo_bJuHUkIAzFubbOcjQ==';
-
-const getVisitCount = () => {
-  let count = 0;
-  fetch(functionAPI).then(response => {
-    return response.json();
-  }).then(response => {
-    console.log("Website called Function API.");
-    count = response.count;
-    document.getElementByID("counter").innerText = count;
-  }).catch(function(error) {
-    console.log(error);
-  });
-  return count;
-}
-
 
 // setup typewriter effect in the terminal demo
 if (document.getElementsByClassName('demo').length > 0) {
